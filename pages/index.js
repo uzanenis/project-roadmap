@@ -1,13 +1,11 @@
 import Button from "../components/Button";
 
-function HomePage({...props}) {
-    return(
-        <div>
-            <Button>
-                Merhaba
-            </Button>
-        </div>
-    )
+function HomePage({ ...props }) {
+  return (
+    <div>
+      <Button>Save</Button>
+    </div>
+  );
 }
 
-export default HomePage
+export default HomePage;
