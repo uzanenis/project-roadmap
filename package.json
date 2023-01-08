@@ -15,6 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "^4.8.0",
+    "antd": "^5.1.2",
     "classnames": "^2.3.2",
     "css-loader-shorter-classnames": "^2.0.1",
     "next": "^13.1.1",

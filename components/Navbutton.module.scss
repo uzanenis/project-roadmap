@@ -1,4 +1,37 @@
 .button {
-  display: block;
-  background-color: red
+  position: relative;
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+  padding: 10px 20px;
+  border-radius: 99px;
+  background-color: transparent;
+  color: var(--c-white-80);
+  transition: 0.2s;
+  ///Typo
+  font-size: 1.3rem;
+  font-weight: 500;
+
+  &:hover {
+    opacity: 1;
+    background-color: var(--c-beige-60);
+    box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.75);
+    color: var(--c-black80);
+  }
+}
+
+.notifyCount {
+  position: absolute;
+  top: 4px;
+  left: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--c-primary);
+  color: var(--c-white);
+  height: 17px;
+  padding: 0 6px;
+  border-radius: 17px;
+  font-size: 0.7rem;
+  border: 1px solid var(--c-black80);
 }

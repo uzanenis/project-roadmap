@@ -1,5 +1,23 @@
 .navigation {
-  :not(:last-child) {
-    margin-bottom: 12px;
+  padding: 30px;
+  background-color: var(--c-black80);
+
+  .activePage {
+    background-color: var(--c-beige-20);
+    color: var(--c-beige-80);
+    opacity: 1;
   }
+
+  :global {
+    button {
+      .anticon {
+        margin-right: 16px;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+    }
+  }
+
 }
