@@ -1,0 +1,31 @@
+.loginCard {
+  z-index: 2;
+  min-width: 450px;
+  padding: 24px 32px;
+  background-color: var(--c-white-80);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 8px;
+
+}
+
+@media screen and (max-width: 960px) {
+  .loginCard {
+
+    min-width: 100%;
+
+  }
+}
+
+@media screen and (min-width: 1270px) {
+  .loginCard {
+    z-index: 2;
+    min-width: 450px;
+    padding: 24px 32px;
+    background-color: var(--c-white-80);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 8px;
+
+  }
+}
+
+
