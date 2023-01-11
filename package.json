@@ -16,12 +16,15 @@
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
+    "@reduxjs/toolkit": "^1.9.1",
     "antd": "^5.1.2",
+    "axios": "^1.2.2",
     "classnames": "^2.3.2",
     "css-loader-shorter-classnames": "^2.0.1",
     "next": "^13.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
