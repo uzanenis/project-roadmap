@@ -5,9 +5,9 @@ function TaskCard({ title, date }) {
     <div className={styles.taskCard}>
       <div className={styles.title}>
         <span>Icon</span>
-        1️⃣ First: Get started using My Tasks
+        {title}
       </div>
-      <div>Feb 1</div>
+      <div>{date}</div>
     </div>
   );
 }
