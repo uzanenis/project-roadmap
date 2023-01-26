@@ -1,29 +1,40 @@
 import styles from "./LoginCard.module.scss";
-import { Checkbox, Form, Input } from "antd";
 import PrimaryButton from "./Primary-button";
 import { useRouter } from "next/router";
 import { login } from "../axios";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { authSlice } from "../redux/userSlice";
+import { useForm } from "@mantine/form";
+import { TextInput, Checkbox, Group, Box, PasswordInput } from "@mantine/core";
 
 function LoginCard({ ...props }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+      remember: false,
+    },
+
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  });
   const router = useRouter();
-  const { loading, error } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  const onFinish = () => {
+  const onFinish = (values) => {
+    setFormData({
+      email: values.email,
+      password: values.password,
+    });
     console.log(formData);
     login(formData)
       .then((response) => {
         if (response.status === 200) {
           localStorage.setItem("user", JSON.stringify(response.data.user));
           //setUser(response.data.user);
-          dispatch(authSlice());
-          router.push("/");
+          router.push("/dashboard");
         }
       })
       .catch((err) => {
@@ -35,63 +46,35 @@ function LoginCard({ ...props }) {
   };
   return (
     <div className={styles.loginCard}>
-      <Form
-        name="normal_login"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Form.Item
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "Please input your username!",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Username"
-            onChange={(e) => {
-              setFormData({
-                ...formData,
-                email: e.target.value,
-              });
-            }}
+      <Box mx="auto">
+        <form onSubmit={form.onSubmit((values) => onFinish(values))}>
+          <TextInput
+            withAsterisk
+            label="Email"
+            placeholder="your@email.com"
+            className={styles.input}
+            {...form.getInputProps("email")}
           />
-        </Form.Item>
-
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password
+          <PasswordInput
             placeholder="Password"
-            onChange={(e) => {
-              setFormData({
-                ...formData,
-                password: e.target.value,
-              });
-            }}
+            label="Password"
+            withAsterisk
+            className={styles.input}
+            {...form.getInputProps("password")}
           />
-        </Form.Item>
 
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox className={styles.checkbox}>Remember me</Checkbox>
-        </Form.Item>
+          <Checkbox
+            mt="md"
+            label="Remember me"
+            color="yellow"
+            {...form.getInputProps("remember", { type: "checkbox" })}
+          />
 
-        <Form.Item>
-          <PrimaryButton type="submit">Sign In</PrimaryButton>
-        </Form.Item>
-      </Form>
+          <Group position="right" mt="md">
+            <PrimaryButton type="submit">Submit</PrimaryButton>
+          </Group>
+        </form>
+      </Box>
     </div>
   );
 }

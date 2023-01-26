@@ -1,12 +1,18 @@
 import LoginCard from "../components/LoginCard";
 import styles from "./login.module.scss";
+import Head from "next/head";
 
 function Login({ ...props }) {
   return (
-    <div className={styles.login}>
-      <span className={styles.title}>Sign In</span>
-      <LoginCard />
-    </div>
+    <>
+      <Head>
+        <title>Sign In</title>
+      </Head>
+      <div className={styles.login}>
+        <span className={styles.title}>Sign In</span>
+        <LoginCard />
+      </div>
+    </>
   );
 }
 
