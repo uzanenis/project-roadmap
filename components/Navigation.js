@@ -1,6 +1,8 @@
 import styles from "./Navigation.module.scss";
-import cn from "classnames";
 import Navbutton from "./Navbutton";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 import {
   CalendarOutlined,
   HomeOutlined,
@@ -10,24 +12,40 @@ import {
 } from "@ant-design/icons";
 
 function Navigation() {
+  const router = useRouter();
   return (
     <nav className={styles.navigation}>
-      <Navbutton>
-        <HomeOutlined />
-        <span>Home</span>
-      </Navbutton>
-      <Navbutton className={styles.activePage}>
-        <CalendarOutlined />
-        <span>Calendar</span>
-      </Navbutton>
-      <Navbutton notifyCount={5}>
-        <CheckSquareOutlined />
-        <span>Todos</span>
-      </Navbutton>
-      <Navbutton>
-        <ScheduleOutlined />
-        <span>Schedule</span>
-      </Navbutton>
+      <Link href="/">
+        <Navbutton className={router.pathname === "/" ? styles.activePage : ""}>
+          <HomeOutlined />
+          <span>Home</span>
+        </Navbutton>
+      </Link>
+      <Link href="/calendar">
+        <Navbutton
+          className={router.pathname === "/dashboard" ? styles.activePage : ""}
+        >
+          <CalendarOutlined />
+          <span>Calendar</span>
+        </Navbutton>
+      </Link>
+      <Link href="/todos">
+        <Navbutton
+          className={router.pathname === "/todos" ? styles.activePage : ""}
+          notifyCount={5}
+        >
+          <CheckSquareOutlined />
+          <span>Todos</span>
+        </Navbutton>
+      </Link>
+      <Link href="/schedule">
+        <Navbutton
+          className={router.pathname === "/schedule" ? styles.activePage : ""}
+        >
+          <ScheduleOutlined />
+          <span>Schedule</span>
+        </Navbutton>
+      </Link>
       <Navbutton>
         <SearchOutlined />
         <span>Search</span>
