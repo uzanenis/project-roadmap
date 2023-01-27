@@ -54,6 +54,7 @@ function LoginCard({ ...props }) {
             placeholder="your@email.com"
             className={styles.input}
             {...form.getInputProps("email")}
+            autocapitalize="off"
           />
           <PasswordInput
             placeholder="Password"

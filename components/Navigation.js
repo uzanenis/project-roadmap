@@ -3,30 +3,37 @@ import Navbutton from "./Navbutton";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { TextInput } from "@mantine/core";
 import {
-  CalendarOutlined,
-  HomeOutlined,
-  CheckSquareOutlined,
-  ScheduleOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+  IconSearch,
+  IconHome,
+  IconCheckupList,
+  IconListDetails,
+  IconLayoutDashboard,
+} from "@tabler/icons-react";
 
 function Navigation() {
   const router = useRouter();
   return (
     <nav className={styles.navigation}>
+      <TextInput
+        placeholder="Search"
+        size="xs"
+        icon={<IconSearch size={12} stroke={1.5} />}
+        mb="sm"
+      />
       <Link href="/">
         <Navbutton className={router.pathname === "/" ? styles.activePage : ""}>
-          <HomeOutlined />
+          <IconHome />
           <span>Home</span>
         </Navbutton>
       </Link>
-      <Link href="/calendar">
+      <Link href="/dashboard">
         <Navbutton
           className={router.pathname === "/dashboard" ? styles.activePage : ""}
         >
-          <CalendarOutlined />
-          <span>Calendar</span>
+          <IconLayoutDashboard />
+          <span>Dashboard</span>
         </Navbutton>
       </Link>
       <Link href="/todos">
@@ -34,7 +41,7 @@ function Navigation() {
           className={router.pathname === "/todos" ? styles.activePage : ""}
           notifyCount={5}
         >
-          <CheckSquareOutlined />
+          <IconCheckupList />
           <span>Todos</span>
         </Navbutton>
       </Link>
@@ -42,12 +49,12 @@ function Navigation() {
         <Navbutton
           className={router.pathname === "/schedule" ? styles.activePage : ""}
         >
-          <ScheduleOutlined />
+          <IconListDetails />
           <span>Schedule</span>
         </Navbutton>
       </Link>
       <Navbutton>
-        <SearchOutlined />
+        <IconSearch />
         <span>Search</span>
       </Navbutton>
     </nav>
