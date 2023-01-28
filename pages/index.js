@@ -8,7 +8,7 @@ function HomePage({ ...props }) {
     if (!isLoggedIn) {
       router.push("/login");
     } else {
-      router.push("/dashboard");
+      router.push("/home");
     }
   }, [isLoggedIn]);
   return <div>Loading</div>;

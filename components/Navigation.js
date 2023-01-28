@@ -22,8 +22,10 @@ function Navigation() {
         icon={<IconSearch size={12} stroke={1.5} />}
         mb="sm"
       />
-      <Link href="/">
-        <Navbutton className={router.pathname === "/" ? styles.activePage : ""}>
+      <Link href="/home">
+        <Navbutton
+          className={router.pathname === "/home" ? styles.activePage : ""}
+        >
           <IconHome />
           <span>Home</span>
         </Navbutton>
