@@ -3,10 +3,12 @@ import { useTaskStore } from "../store/store";
 import styles from "./DashboardTable.module.scss";
 import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
+import PrimaryButton from "./Primary-button";
 import { useForm } from "@mantine/form";
 import { Modal, TextInput } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
-import PrimaryButton from "./Primary-button";
+import { showNotification } from "@mantine/notifications";
+import { IconCircleCheck } from "@tabler/icons-react";
 
 function DashboardTable() {
   const tasks = useTaskStore((state) => state.tasks);
@@ -23,6 +25,18 @@ function DashboardTable() {
 
     validate: {},
   });
+
+  const handleSubmit = () => {
+    setOpened(false);
+    addTask(form.values);
+    showNotification({
+      autoClose: 5000,
+      title: "Task Added",
+      message: "Your task has been added to the list",
+      color: "green",
+      icon: <IconCircleCheck />,
+    });
+  };
 
   useEffect(() => {
     form.setFieldValue("date", date.toLocaleDateString());
@@ -53,7 +67,9 @@ function DashboardTable() {
         />
         <PrimaryButton
           style={{ marginTop: 24 }}
-          onClick={() => addTask(form.values)}
+          onClick={() => {
+            handleSubmit();
+          }}
         >
           {" "}
           Add Task{" "}

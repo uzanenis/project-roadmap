@@ -2,7 +2,6 @@ import styles from "./Navigation.module.scss";
 import Navbutton from "./Navbutton";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
 import { TextInput } from "@mantine/core";
 import {
   IconSearch,
