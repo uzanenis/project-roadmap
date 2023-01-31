@@ -1,9 +1,8 @@
 import styles from "./TaskCard.module.scss";
-import cn from "classnames";
 
-function TaskCard({ title, date }) {
+function TaskCard({ title, date, ...props }) {
   return (
-    <div className={styles.taskCard}>
+    <div className={styles.taskCard} {...props}>
       <div className={styles.title}>
         <span>Icon</span>
         {title}

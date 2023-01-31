@@ -5,17 +5,21 @@ import TaskCard from "./TaskCard";
 import AddTaskButton from "./AddTaskButton";
 import PrimaryButton from "./Primary-button";
 import { useForm } from "@mantine/form";
-import { Modal, TextInput } from "@mantine/core";
+import { Modal, TextInput, Drawer } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { showNotification } from "@mantine/notifications";
 import { IconCircleCheck } from "@tabler/icons-react";
+import React from "react";
 
 function DashboardTable() {
   const tasks = useTaskStore((state) => state.tasks);
   const addTask = useTaskStore((state) => state.addTask);
 
-  const [opened, setOpened] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
+  const [drawerOpened, setDrawerOpened] = useState(false);
+
   const [date, setDate] = useState(new Date());
+  const [selectedTask, setSelectedTask] = useState({});
 
   const form = useForm({
     initialValues: {
@@ -27,15 +31,19 @@ function DashboardTable() {
   });
 
   const handleSubmit = () => {
-    setOpened(false);
+    setModalOpened(false);
     addTask(form.values);
     showNotification({
-      autoClose: 5000,
+      autoClose: 4000,
       title: "Task Added",
       message: "Your task has been added to the list",
       color: "green",
       icon: <IconCircleCheck />,
     });
+  };
+  const handleTaskClick = (task) => {
+    setDrawerOpened(true);
+    setSelectedTask(task);
   };
 
   useEffect(() => {
@@ -47,8 +55,8 @@ function DashboardTable() {
       <Modal
         centered
         size="md"
-        opened={opened}
-        onClose={() => setOpened(false)}
+        opened={modalOpened}
+        onClose={() => setModalOpened(false)}
         title="Let's Add a Task!"
       >
         <TextInput
@@ -71,26 +79,76 @@ function DashboardTable() {
             handleSubmit();
           }}
         >
-          {" "}
-          Add Task{" "}
+          Add Task
         </PrimaryButton>
       </Modal>
+
       <div className={styles.dashboardContainer}>
         <div className={styles.tasks}>
           {tasks.map((task, key) => (
-            <TaskCard title={task.title} date={task.date} key={key} />
+            <React.Fragment key={key}>
+              <TaskCard
+                title={task.title}
+                date={task.date}
+                onClick={() => handleTaskClick(task)}
+              />
+              <Drawer
+                opened={drawerOpened}
+                onClose={() => setDrawerOpened(false)}
+                title="Register"
+                padding="xl"
+                size="xl"
+                position="right"
+                overlayOpacity={0.2}
+                overlayBlur={0}
+              >
+                {selectedTask.title}
+              </Drawer>
+            </React.Fragment>
           ))}
-          <AddTaskButton setModal={setOpened}>Add Task</AddTaskButton>
+          <AddTaskButton setModal={setModalOpened}>Add Task</AddTaskButton>
         </div>
         <div className={styles.tasks}>
-          {tasks.map((task, key) => (
-            <TaskCard title={task.title} date={task.date} key={key} />
-          ))}
+          {/*tasks.map((task, key) => (
+            <>
+              <TaskCard
+                title={task.title}
+                date={task.date}
+                key={task.title}
+                onClick={() => setDrawerOpened(true)}
+              />
+
+              <Drawer
+                key={key}
+                opened={drawerOpened}
+                onClose={() => setDrawerOpened(false)}
+                title={task.title}
+                padding="xl"
+                size="xl"
+              ></Drawer>
+            </>
+          ))*/}
         </div>
         <div className={styles.tasks}>
-          {tasks.map((task, key) => (
-            <TaskCard title={task.title} date={task.date} key={key} />
-          ))}
+          {/*tasks.map((task, key) => (
+            <>
+              <TaskCard
+                title={task.title}
+                date={task.date}
+                key={task.title}
+                onClick={() => setDrawerOpened(true)}
+              />
+
+              <Drawer
+                key={key}
+                opened={drawerOpened}
+                onClose={() => setDrawerOpened(false)}
+                title={task.title}
+                padding="xl"
+                size="xl"
+              ></Drawer>
+            </>
+          ))*/}
         </div>
       </div>
     </>
