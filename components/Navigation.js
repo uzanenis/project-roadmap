@@ -10,9 +10,12 @@ import {
   IconListDetails,
   IconLayoutDashboard,
 } from "@tabler/icons-react";
+import { useTaskStore } from "../store/store";
 
 function Navigation() {
   const router = useRouter();
+  const tasks = useTaskStore((state) => state.tasks);
+
   return (
     <nav className={styles.navigation}>
       <TextInput
@@ -32,18 +35,18 @@ function Navigation() {
       <Link href="/dashboard">
         <Navbutton
           className={router.pathname === "/dashboard" ? styles.activePage : ""}
+          notifyCount={tasks.length}
         >
           <IconLayoutDashboard />
           <span>Dashboard</span>
         </Navbutton>
       </Link>
-      <Link href="/todos">
+      <Link href="/goals">
         <Navbutton
-          className={router.pathname === "/todos" ? styles.activePage : ""}
-          notifyCount={5}
+          className={router.pathname === "/goals" ? styles.activePage : ""}
         >
           <IconCheckupList />
-          <span>Todos</span>
+          <span>Goals</span>
         </Navbutton>
       </Link>
       <Link href="/schedule">

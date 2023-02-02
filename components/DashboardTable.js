@@ -95,7 +95,7 @@ function DashboardTable() {
               <Drawer
                 opened={drawerOpened}
                 onClose={() => setDrawerOpened(false)}
-                title="Register"
+                title={selectedTask.title}
                 padding="xl"
                 size="xl"
                 position="right"
@@ -103,6 +103,7 @@ function DashboardTable() {
                 overlayBlur={0}
               >
                 {selectedTask.title}
+                {selectedTask.date}
               </Drawer>
             </React.Fragment>
           ))}

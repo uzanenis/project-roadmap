@@ -10,3 +10,34 @@ export const useTaskStore = create((set) => ({
   addTask: (task) => set((state) => ({ tasks: [...state.tasks, task] })),
   removeAllBears: () => set({ tasks: [] }),
 }));
+
+export const useGoalStore = create((set) => ({
+  goals: [
+    {
+      title: "Goal 1",
+      status: "On Track",
+      percentage: 75,
+      subGoals: [
+        { title: "Sub Goal 1", status: "On Track", percentage: 75 },
+        {
+          title: "Sub Goal 2",
+          status: "On Track",
+          percentage: 75,
+        },
+      ],
+    },
+    {
+      title: "Goal 2",
+      status: "On Track",
+      percentage: 60,
+      subGoals: [
+        { title: "Sub Goal 1", status: "On Track", percentage: 75 },
+        {
+          title: "Sub Goal 2",
+          status: "On Track",
+          percentage: 75,
+        },
+      ],
+    },
+  ],
+}));
