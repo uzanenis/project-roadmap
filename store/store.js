@@ -8,7 +8,7 @@ export const useTaskStore = create((set) => ({
   ],
   tasksCount: 0,
   addTask: (task) => set((state) => ({ tasks: [...state.tasks, task] })),
-  removeAllBears: () => set({ tasks: [] }),
+  removeAllTask: () => set({ tasks: [] }),
 }));
 
 export const useGoalStore = create((set) => ({
@@ -40,4 +40,9 @@ export const useGoalStore = create((set) => ({
       ],
     },
   ],
+  addGoal: (goal) =>
+    set((state) => ({
+      goals: [...state.goals, goal],
+    })),
+  removeAllGoals: () => set({ goals: [] }),
 }));

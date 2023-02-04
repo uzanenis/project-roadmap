@@ -10,11 +10,12 @@ import {
   IconListDetails,
   IconLayoutDashboard,
 } from "@tabler/icons-react";
-import { useTaskStore } from "../store/store";
+import { useGoalStore, useTaskStore } from "../store/store";
 
 function Navigation() {
   const router = useRouter();
   const tasks = useTaskStore((state) => state.tasks);
+  const goals = useGoalStore((state) => state.goals);
 
   return (
     <nav className={styles.navigation}>
@@ -44,6 +45,7 @@ function Navigation() {
       <Link href="/goals">
         <Navbutton
           className={router.pathname === "/goals" ? styles.activePage : ""}
+          notifyCount={goals.length}
         >
           <IconCheckupList />
           <span>Goals</span>
