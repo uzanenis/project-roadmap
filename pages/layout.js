@@ -1,5 +1,5 @@
 import Navigation from "../components/Navigation";
-import styles from "./layout.module.scss";
+import styles from "../styles/layout.module.scss";
 
 export default function DashboardLayout({ children }) {
   return (

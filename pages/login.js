@@ -1,5 +1,5 @@
 import LoginCard from "../components/LoginCard";
-import styles from "./login.module.scss";
+import styles from "../styles/login.module.scss";
 import Head from "next/head";
 
 function Login({ ...props }) {
