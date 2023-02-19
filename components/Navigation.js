@@ -9,6 +9,7 @@ import {
   IconCheckupList,
   IconListDetails,
   IconLayoutDashboard,
+  IconClockHour3,
 } from "@tabler/icons-react";
 import { useGoalStore, useTaskStore } from "../store/store";
 
@@ -59,10 +60,14 @@ function Navigation() {
           <span>Schedule</span>
         </Navbutton>
       </Link>
-      <Navbutton>
-        <IconSearch />
-        <span>Search</span>
-      </Navbutton>
+      <Link href="/timer">
+        <Navbutton
+          className={router.pathname === "/timer" ? styles.activePage : ""}
+        >
+          <IconClockHour3 />
+          <span>Timer</span>
+        </Navbutton>
+      </Link>
     </nav>
   );
 }
